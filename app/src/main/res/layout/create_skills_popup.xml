@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="16dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:id="@+id/create_skills_tv"
+            android:fontFamily="@font/aero_matics_display_bold_italic"
+            android:textSize="22sp"
+            android:paddingTop="8dp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/profile_list_shape"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_height="50dp"
+            android:text="@string/skills"/>
+
+        <EditText
+            android:id="@+id/et_skills"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/create_skills_tv"
+            android:autofillHints=""
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-light"
+            android:textColorHint="#707070"
+            android:textStyle="normal|italic"
+            android:hint="@string/skills"
+            android:inputType="text" />
+
+
+
+        <ImageButton
+            android:id="@+id/save_skills_iv"
+            android:layout_below="@id/et_skills"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_group"
+            android:backgroundTint="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="16dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:id="@+id/create_project_tv"
+            android:fontFamily="@font/aero_matics_display_bold_italic"
+            android:textSize="22sp"
+            android:paddingTop="8dp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/profile_list_shape"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_height="50dp"
+            android:text="@string/Projects_details"/>
+
+        <EditText
+            android:id="@+id/et_project_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/create_project_tv"
+            android:autofillHints=""
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-light"
+            android:textColorHint="#707070"
+            android:textStyle="normal|italic"
+            android:hint="@string/project_name"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/et_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_project_name"
+            android:autofillHints=""
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-light"
+            android:textColorHint="#707070"
+            android:textStyle="normal|italic"
+            android:hint="@string/project_description"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/et_duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_description"
+            android:autofillHints=""
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-light"
+            android:textColorHint="#707070"
+            android:textStyle="normal|italic"
+            android:hint="@string/project_duration"
+            android:inputType="number" />
+
+
+
+        <ImageButton
+            android:id="@+id/save_project_iv"
+            android:layout_below="@id/et_duration"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_group"
+            android:backgroundTint="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

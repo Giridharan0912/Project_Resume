@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile_card_view"
+    android:layout_marginTop="12dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_width="match_parent"
+    app:cardCornerRadius="16dp"
+    android:layout_height="100dp">
+    <RelativeLayout
+        android:background="@drawable/background_gradient"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/profile_relative_layout"
+            android:background="@drawable/profile_list_shape"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <TextView
+                android:id="@+id/pl_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:text="@string/app_name"
+                android:textAppearance="@style/TextViewStyle"
+                android:layout_centerHorizontal="true"
+             android:layout_alignParentBottom="true"
+                android:paddingBottom="4dp"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_user"
+            android:backgroundTint="@android:color/transparent"
+            android:layout_marginTop="10dp"
+            android:id="@+id/pl_iv"
+            />
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
