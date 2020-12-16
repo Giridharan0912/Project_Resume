@@ -17,6 +17,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.alphaverse.projectresume.R;
 import com.alphaverse.projectresume.model.Projects;
+
 import static com.alphaverse.projectresume.activities.editresume.editresumefragments.ProjectFragment.PROJECT_PROFILE_ID;
 import static com.alphaverse.projectresume.activities.editresume.editresumefragments.ProjectFragment.REQ_CODE_FOR_PROJECT_CREATE;
 import static com.alphaverse.projectresume.activities.editresume.editresumefragments.ProjectFragment.REQ_CODE_FOR_PROJECT_UPDATE;
@@ -56,9 +57,9 @@ public class ProjectDialogFragment extends DialogFragment {
                 Bundle bundle = getArguments();
                 profileId = bundle.getInt(PROJECT_PROFILE_ID);
                 saveBtn.setOnClickListener(view1 -> {
-                   Projects projects=new Projects(profileId,etProjectName.getText().toString(),etProjectDescription.getText().toString(),etProjectDuration.getText().toString());
-                   insertProject.sendInsert(projects);
-                   getDialog().dismiss();
+                    Projects projects = new Projects(profileId, etProjectName.getText().toString(), etProjectDescription.getText().toString(), etProjectDuration.getText().toString());
+                    insertProject.sendInsert(projects);
+                    getDialog().dismiss();
                     bundle.clear();
                 });
                 break;
@@ -87,7 +88,6 @@ public class ProjectDialogFragment extends DialogFragment {
     }
 
     public interface UpdateProject {
-
         void sendUpdate(Projects inputFromProject);
     }
 

@@ -2,17 +2,28 @@ package com.alphaverse.projectresume.activities.createresumes.createresumefragme
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.print.PrintAttributes;
+import android.print.PrintDocumentAdapter;
+import android.print.PrintJob;
+import android.print.PrintManager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -29,6 +40,7 @@ import com.alphaverse.projectresume.model.Strengths;
 import com.alphaverse.projectresume.viewmodel.ResumeViewModel;
 
 import java.util.List;
+import java.util.Objects;
 
 
 public class ResumeFragment extends Fragment {
@@ -44,6 +56,10 @@ public class ResumeFragment extends Fragment {
     private PersonalDetails resumePersonalDetails;
     private String name;
     private ProgressBar progressBar;
+    PrintJob printJob;
+
+    // a boolean to check the status of printing
+    boolean printBtnPressed = false;
 
 
     public ResumeFragment(Context context) {
@@ -56,6 +72,7 @@ public class ResumeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         bundle = getArguments();
         profileId = bundle.getInt(PreviewActionListener.ACTION_KEY_FOR_PROFILE_ID);
         resumeTemplate = bundle.getString(PreviewActionListener.ACTION_KEY_FOR_PREVIEW);
@@ -124,6 +141,8 @@ public class ResumeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         resumeView = inflater.inflate(R.layout.fragment_resume, container, false);
         resumeWebView = resumeView.findViewById(R.id.resume_web_view);
+        Toolbar toolbar = resumeView.findViewById(R.id.toolbar_create_resume);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         resumeViewModel = ViewModelProviders.of(this).get(ResumeViewModel.class);
         resume = new Resume(profileId, context);
         setResumeDetails();
@@ -134,6 +153,58 @@ public class ResumeFragment extends Fragment {
             }
         }, 1500);
         return resumeView;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_create_resume, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.download:
+//              TODO: download a resume as pdf
+                if (resumeWebView != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        // Calling createWebPrintJob()
+                        PrintTheWebPage(resumeWebView);
+                    } else {
+                        // Showing Toast message to user
+                        Toast.makeText(getContext(), "Not available for device below Android LOLLIPOP", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    // Showing Toast message to user
+                    Toast.makeText(getContext(), "WebPage not fully loaded", Toast.LENGTH_SHORT).show();
+                }
+
+
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    private void PrintTheWebPage(WebView webView) {
+
+        // set printBtnPressed true
+        printBtnPressed = true;
+
+        // Creating  PrintManager instance
+        PrintManager printManager = (PrintManager) Objects.requireNonNull(getActivity()).getSystemService(Context.PRINT_SERVICE);
+
+        // setting the name of job
+        String jobName = getString(R.string.app_name) + " webpage" + webView;
+
+        // Creating  PrintDocumentAdapter instance
+        PrintDocumentAdapter printAdapter = webView.createPrintDocumentAdapter(jobName);
+
+        // Create a print job with name and adapter instance
+        assert printManager != null;
+        printJob = printManager.print(jobName, printAdapter,
+                new PrintAttributes.Builder().build());
     }
 
     @SuppressLint("DefaultLocale")
@@ -325,5 +396,39 @@ public class ResumeFragment extends Fragment {
             }
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (printJob != null && printBtnPressed) {
+            if (printJob.isCompleted()) {
+                // Showing Toast Message
+                Toast.makeText(getContext(), "Completed", Toast.LENGTH_SHORT).show();
+            } else if (printJob.isStarted()) {
+                // Showing Toast Message
+                Toast.makeText(getContext(), "isStarted", Toast.LENGTH_SHORT).show();
+
+            } else if (printJob.isBlocked()) {
+                // Showing Toast Message
+                Toast.makeText(getContext(), "isBlocked", Toast.LENGTH_SHORT).show();
+
+            } else if (printJob.isCancelled()) {
+                // Showing Toast Message
+                Toast.makeText(getContext(), "isCancelled", Toast.LENGTH_SHORT).show();
+
+            } else if (printJob.isFailed()) {
+                // Showing Toast Message
+                Toast.makeText(getContext(), "isFailed", Toast.LENGTH_SHORT).show();
+
+            } else if (printJob.isQueued()) {
+                // Showing Toast Message
+                Toast.makeText(getContext(), "isQueued", Toast.LENGTH_SHORT).show();
+
+            }
+            // set printBtnPressed false
+            printBtnPressed = false;
+        }
+    }
 }
+
 

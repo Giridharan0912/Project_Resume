@@ -1,11 +1,10 @@
 package com.alphaverse.projectresume.activities.createresumes;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.os.Bundle;
 
 import com.alphaverse.projectresume.R;
 import com.alphaverse.projectresume.activities.createresumes.createresumefragments.PreviewActionListener;
@@ -14,7 +13,7 @@ import com.alphaverse.projectresume.activities.createresumes.createresumefragmen
 
 public class CreateResumeActivity extends AppCompatActivity implements PreviewActionListener {
     private FragmentManager fragmentManager;
-    private FragmentTransaction fragmentTransaction;;
+    private FragmentTransaction fragmentTransaction;
     private int profileId;
 
     @Override
@@ -55,10 +54,8 @@ public class CreateResumeActivity extends AppCompatActivity implements PreviewAc
     @Override
     public void onActionPerformed(Bundle bundle) {
         int actionPerformed = bundle.getInt(PreviewActionListener.ACTION_KEY);
-        switch (actionPerformed){
-            case PreviewActionListener.ACTION_VALUE:
-                    initResume(bundle);
-                break;
+        if (actionPerformed == PreviewActionListener.ACTION_VALUE) {
+            initResume(bundle);
         }
     }
 }
