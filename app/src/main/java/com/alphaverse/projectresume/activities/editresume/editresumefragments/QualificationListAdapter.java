@@ -42,8 +42,6 @@ public class QualificationListAdapter extends RecyclerView.Adapter<Qualification
             Qualification current = ProfileWithQualificationsList.get(position);
             holder.setQualification(current.getQualificationId(), current.getQProfileId(), current.getDegree(), current.getInstitution(), current.getYOP(), current.getPercentage());
         }
-
-
     }
 
     public void setProfileWithQualificationsList(List<Qualification> qualifications) {

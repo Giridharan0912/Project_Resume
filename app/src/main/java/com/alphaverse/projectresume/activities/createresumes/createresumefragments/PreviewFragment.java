@@ -44,8 +44,8 @@ public class PreviewFragment extends Fragment implements PreviewRVAdapter.OnPrev
         ResumeRecyclerView = preView.findViewById(R.id.resume_grid_view);
         previewRVAdapter = new PreviewRVAdapter(context, previewList, onPreviewListener);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false);
-        int spanCount = 2; // 3 columns
-        int spacing = 50; // 50px
+        int spanCount = 2;
+        int spacing = 50;
         ResumeRecyclerView.setLayoutManager(gridLayoutManager);
         ResumeRecyclerView.addItemDecoration(new GridSpacingItemDecoration(spanCount,spacing, true));
         ResumeRecyclerView.setAdapter(previewRVAdapter);

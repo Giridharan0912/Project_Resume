@@ -45,5 +45,12 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
     annotationProcessor "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion"
     implementation 'android.arch.persistence.room:rxjava2:1.1.1'
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.3.0"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata:2.3.0"
+    // Saved state module for ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0"
+
 
 }

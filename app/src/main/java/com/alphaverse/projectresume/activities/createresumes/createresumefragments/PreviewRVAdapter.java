@@ -72,9 +72,8 @@ public class PreviewRVAdapter extends RecyclerView.Adapter<PreviewRVAdapter.Resu
 
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
-                case R.id.resume_iv:
-                    onPreviewListener.onPreviewClicked(resumeClicked);
+            if (v.getId() == R.id.resume_iv) {
+                onPreviewListener.onPreviewClicked(resumeClicked);
             }
         }
     }

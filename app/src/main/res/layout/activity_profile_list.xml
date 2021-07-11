@@ -25,7 +25,6 @@
         app:itemTextAppearance="@style/TextViewStyle"
         app:itemBackground="@drawable/menu_item_padding"
         app:itemHorizontalPadding="40dp"
-
         />
 
 </androidx.drawerlayout.widget.DrawerLayout>

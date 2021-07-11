@@ -52,7 +52,6 @@ public class ResumeViewModel extends AndroidViewModel {
         return allProfilesList;
     }
 
-
     public void insertQualificationForProfile(Qualification qualification) {
         repository.insertQualificationForProfile(qualification);
     }
